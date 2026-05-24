@@ -9,33 +9,30 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <title>Usuários Cadastrados</title>
 </head>
-<body>
+<body class="w3-light-grey">
 
 <?php
 if(!isset($_SESSION)) { session_start(); }
+
 include_once __DIR__ . '/../Model/Usuario.php';
 include_once __DIR__ . '/../Controller/UsuarioController.php';
-$usuarioController = new UsuarioController();
-$results = $usuarioController->gerarLista();
-?>
+
 $usuarioController = new UsuarioController();
 $results = $usuarioController->gerarLista();
 ?>
 
-<header class="w3-container w3-padding-32 w3-center">
- <h1 class="w3-text-white w3-panel w3-cyan w3-round-large">
-   Lista de Usuários Cadastrados no Sistema
- </h1>
+<header class="w3-container w3-padding-32 w3-center w3-cyan w3-text-white">
+ <h1 class="w3-xxlarge">Lista de Usuários Cadastrados no Sistema</h1>
 </header>
 
-<div class="w3-padding-128 w3-content w3-text-grey">
+<div class="w3-padding-64 w3-content">
  <div class="w3-container">
-   <table class="w3-table-all w3-centered">
+   <table class="w3-table-all w3-centered w3-card-4">
      <thead>
-       <tr class="w3-center w3-blue">
+       <tr class="w3-blue">
          <th>Código</th>
          <th>Nome</th>
-         <th>Detalhes</th>
+         <th>Visualizar</th>
        </tr>
      </thead>
      <tbody>
@@ -49,7 +46,7 @@ $results = $usuarioController->gerarLista();
              <form action="/Controller/navegacao.php" method="post">
                <input type="hidden" name="idusuario" value="'.$row->idusuario.'"/>
                <button name="btnDetalhes" class="w3-button w3-blue w3-round-large">
-                 Ver Detalhes
+                 <i class="fa fa-print"></i>
                </button>
              </form>
            </td>';
@@ -57,21 +54,16 @@ $results = $usuarioController->gerarLista();
          }
        }
        ?>
-     </tbody>
+       </tbody>
    </table>
  </div>
 </div>
 
-<div class="w3-padding-128 w3-content w3-text-grey">
- <form action="/Controller/navegacao.php" method="post" 
-       class="w3-container w3-light-grey w3-text-blue w3-margin w3-center" style="width: 30%;">
-   <div class="w3-row w3-section">
-     <div>
-       <button name="btnVoltar" class="w3-button w3-block w3-margin w3-blue w3-cell w3-round-large" style="width: 90%;">
-         Voltar
-       </button>
-     </div>
-   </div>
+<div class="w3-container w3-center w3-padding-32">
+ <form action="/Controller/navegacao.php" method="post">
+   <button name="btnVoltar" class="w3-button w3-gray w3-round-large" style="width: 150px;">
+     Voltar ao Menu
+   </button>
  </form>
 </div>
 

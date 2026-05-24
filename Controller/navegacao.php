@@ -1,7 +1,7 @@
 <?php
 if(!isset($_SESSION)) { session_start(); }
 
-// Botão de login do administrador
+// 1. Rota de Login do Administrador
 if(isset($_POST["btnLoginADM"])) {
     require_once 'Controller/AdministradorController.php';
     $aController = new AdministradorController();
@@ -12,23 +12,32 @@ if(isset($_POST["btnLoginADM"])) {
     }
 }
 
-// Botão para abrir tela de login do administrador
+// 2. Rota para ir à tela de Login do Administrador
 if(isset($_POST["btnADM"])) {
     include_once '../View/ADMLogin.php';
 }
 
-// Botão para listar usuários cadastrados
+// 3. Rota para listar os usuários cadastrados na tabela 
 if(isset($_POST["btnListarCadastrados"])) {
     include_once '../View/ADMListarCadastrados.php';
 }
 
-// Botão de detalhes de usuário
+// =========================================================================
+// CORRIGIDO: Abre a nova View ADMVisualizarCadastro sem o erro de sintaxe
+// =========================================================================
 if(isset($_POST["btnDetalhes"])) {
     $_SESSION["idusuario"] = $_POST["idusuario"];
-    include_once '../View/ADMDetalhesUsuario.php';
+    include_once '../View/ADMVisualizarCadastro.php'; 
 }
 
-// Botão voltar
+// =========================================================================
+// NOVO: Ação para voltar da página ADMVisualizarCadastro para a Listagem 
+// =========================================================================
+if(isset($_POST["btnVoltarDaVisualizacao"])) {
+    include_once '../View/ADMListarCadastrados.php'; 
+}
+
+// 4. Rota para voltar dos menus gerais para o Painel Principal do ADM
 if(isset($_POST["btnVoltar"])) {
     include_once '../View/ADMPrincipal.php';
 }
